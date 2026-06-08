@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NextRwrd</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0f0d1a;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .logo {
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, #4f8ef7 0%, #7c4fd4 50%, #c44fd4 100%);
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo svg {
+    width: 22px; height: 22px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .nav-live {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 13px;
+    color: #bbb;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-weight: 500;
+  }
+  .dot-live {
+    width: 8px; height: 8px;
+    background: #a855f7;
+    border-radius: 50%;
+  }
+
+  /* HERO */
+  .hero {
+    text-align: center;
+    padding: 60px 20px 20px;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  .hero h1 {
+    font-size: clamp(48px, 7vw, 80px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    margin-bottom: 22px;
+  }
+  .h1-line2 {
+    background: linear-gradient(90deg, #f97316 0%, #ec4899 50%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .h1-orange { color: #f97316; -webkit-text-fill-color: #f97316; }
+
+  .hero-sub {
+    font-size: clamp(15px, 2vw, 18px);
+    color: #9d8faf;
+    line-height: 1.65;
+    margin-bottom: 22px;
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-sub strong { color: #fff; font-weight: 600; }
+
+  .info-badge {
+    border: 1px solid rgba(168,85,247,0.25);
+    border-radius: 50px;
+    padding: 7px 14px;
+    font-size: 12px;
+    color: #8a7a9e;
+    margin: 0 auto 22px;
+    max-width: 480px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(120,60,220,0.05);
+  }
+  .info-icon {
+    width: 14px; height: 14px;
+    border: 1px solid rgba(168,85,247,0.5);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px;
+    color: rgba(168,85,247,0.8);
+    flex-shrink: 0;
+    font-style: italic;
+    font-weight: 700;
+  }
+
+  .cta-btn {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 16px;
+    padding: 19px;
+    background: linear-gradient(90deg, #f97316 0%, #ec4899 50%, #a855f7 100%);
+    border-radius: 16px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+  }
+  .cta-btn:hover { opacity: 0.92; }
+
+  .trust-row {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .trust-item {
+    font-size: 13px;
+    color: #7a6d8a;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .trust-check {
+    width: 17px; height: 17px;
+    border: 1.5px solid #22c55e;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px;
+    color: #22c55e;
+  }
+
+  .tp-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50px;
+    padding: 10px 18px;
+    margin-bottom: 50px;
+    font-size: 14px;
+  }
+  .tp-excellent { font-weight: 800; font-size: 15px; }
+  .tp-stars-wrap { display: flex; gap: 3px; }
+  .tp-star {
+    width: 22px; height: 22px;
+    background: #00b67a;
+    border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+  }
+  .tp-count { color: #888; font-size: 13px; }
+  .tp-brand { color: #00b67a; font-weight: 700; font-size: 13px; display: flex; align-items: center; gap: 4px; }
+
+  /* STATS */
+  .stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    max-width: 600px;
+    margin: 0 auto 70px;
+    padding: 0 20px;
+  }
+  .stat-card {
+    background: #1a1628;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 22px 12px;
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 28px;
+    font-weight: 800;
+    display: block;
+    margin-bottom: 5px;
+  }
+  .stat-label { font-size: 12px; color: #666; }
+  .col-orange { color: #f97316; }
+  .col-pink { color: #ec4899; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="logo">
+    <svg viewBox="0 0 24 24">
+      <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+    </svg>
+  </div>
+  <div class="nav-live"><span class="dot-live"></span> <span id="live-count">4,142 NOW</span></div>
+</nav>
+
+<section class="hero">
+  <h1>Get paid for testing <span class="h1-orange">apps,</span><br><span class="h1-line2">games & surveys</span></h1>
+  <p class="hero-sub">Play mobile games you'd play anyway and unlock <strong>real cash rewards</strong> — redeem via PayPal, bank transfer, Visa prepaid, or 200+ gift cards.</p>
+  <div class="info-badge">
+    <span class="info-icon">i</span>
+    These are <strong>&nbsp;real cash rewards&nbsp;</strong> — not in-game lives or boosters.
+  </div>
+  <a href="https://start.nextrwrd.com/cf/click/1?lptoken=17da80e89460147e11f4" class="cta-btn">Sign up free →</a>
+  <div class="trust-row">
+    <span class="trust-item"><span class="trust-check">✓</span> 100% free</span>
+    <span class="trust-item"><span class="trust-check">✓</span> Real-world rewards</span>
+    <span class="trust-item"><span class="trust-check">✓</span> 60-second signup</span>
+  </div>
+  <div class="tp-pill">
+    <span class="tp-excellent">Excellent</span>
+    <div class="tp-stars-wrap">
+      <span class="tp-star">★</span>
+      <span class="tp-star">★</span>
+      <span class="tp-star">★</span>
+      <span class="tp-star">★</span>
+      <span class="tp-star" style="background:#00b67a;">★</span>
+    </div>
+    <span class="tp-count">274,977 reviews on</span>
+    <span class="tp-brand">★ Trustpilot</span>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat-card">
+    <span class="stat-num col-orange">2M+</span>
+    <span class="stat-label">Active members</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-num col-pink">200+</span>
+    <span class="stat-label">Reward options</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-num col-pink">4.6★</span>
+    <span class="stat-label">Member rating</span>
+  </div>
+</div>
+
+<!-- ROI CALCULATOR -->
+<section class="calc-section">
+  <h2 class="calc-title">See your <span class="gradient-text">potential earnings</span></h2>
+  <p class="calc-sub">Based on average returns from our top testers</p>
+  <div class="calc-card">
+    <div class="calc-spend-row">
+      <span class="calc-label">In-app milestone activation</span>
+      <span class="calc-spend-val" id="spend-display">$250</span>
+    </div>
+    <div class="slider-wrap">
+      <input type="range" id="spend-slider" min="10" max="500" value="250" step="5" class="slider">
+    </div>
+    <div class="slider-minmax">
+      <span>$10</span><span>$500</span>
+    </div>
+    <div class="calc-results">
+      <div class="calc-result-card">
+        <div class="result-label">Invested</div>
+        <div class="result-val" id="result-invested">$250</div>
+      </div>
+      <div class="calc-divider">→</div>
+      <div class="calc-result-card highlight">
+        <div class="result-label">Cash Earned</div>
+        <div class="result-val green" id="result-earned">$325</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .calc-section {
+    max-width: 700px;
+    margin: 0 auto 70px;
+    padding: 0 24px;
+    text-align: center;
+  }
+  .calc-title {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 900;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+  }
+  .calc-sub {
+    font-size: 14px;
+    color: #6b5f7a;
+    margin-bottom: 30px;
+  }
+  .calc-card {
+    background: #1a1628;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 24px;
+    padding: 36px 32px;
+  }
+  .calc-spend-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .calc-label { font-size: 14px; color: #6b5f7a; font-weight: 500; }
+  .calc-spend-val {
+    font-size: 28px;
+    font-weight: 800;
+    background: linear-gradient(90deg, #f97316, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .slider-wrap { position: relative; margin-bottom: 8px; }
+  .slider {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.08);
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+  }
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f97316, #ec4899);
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(249,115,22,0.5);
+    border: 2px solid #0f0d1a;
+  }
+  .slider::-moz-range-thumb {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f97316, #ec4899);
+    cursor: pointer;
+    border: 2px solid #0f0d1a;
+  }
+  .slider-minmax {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #4a3f5a;
+    margin-bottom: 28px;
+  }
+  .calc-results {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .calc-result-card {
+    flex: 1;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+    padding: 18px 12px;
+  }
+  .calc-result-card.highlight {
+    border-color: rgba(34,197,94,0.2);
+    background: rgba(34,197,94,0.05);
+  }
+  .result-label { font-size: 11px; color: #6b5f7a; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.8px; }
+  .result-val { font-size: 22px; font-weight: 800; color: #fff; }
+  .result-val.green { color: #22c55e; }
+  .calc-divider { color: #3a3048; font-size: 18px; font-weight: 300; flex-shrink: 0; }
+</style>
+
+<script>
+  const slider = document.getElementById('spend-slider');
+  const spendDisplay = document.getElementById('spend-display');
+  const resultRevenue = document.getElementById('result-revenue');
+  const resultProfit = document.getElementById('result-profit');
+  const resultRoas = document.getElementById('result-roas');
+
+  function updateCalc() {
+    const spend = parseInt(slider.value);
+    const earned = Math.round(spend * 1.3);
+    spendDisplay.textContent = '$' + spend;
+    document.getElementById('result-invested').textContent = '$' + spend;
+    document.getElementById('result-earned').textContent = '$' + earned;
+  }
+
+  slider.addEventListener('input', updateCalc);
+  updateCalc();
+</script>
+
+<!-- HOW IT WORKS -->
+<section class="steps-section">
+  <h2 class="steps-title">Want to earn within minutes? <span class="gradient-text">Here's how</span></h2>
+  <p class="steps-sub">Three simple steps. No catch.</p>
+  <div class="steps">
+    <div class="step-card">
+      <div class="step-badge s1">1</div>
+      <div class="step-title">Choose an offer</div>
+      <div class="step-desc">Pick from thousands of tasks. Games, surveys, free trials and app tests — all in one place.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-badge s2">2</div>
+      <div class="step-title">Complete it</div>
+      <div class="step-desc">Most offers take a few minutes. Follow the steps and you'll earn coins toward your balance.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-badge s3">3</div>
+      <div class="step-title">Get paid</div>
+      <div class="step-desc">Cash out via PayPal, Venmo, gift cards or bank transfer. Most payouts process instantly.</div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .steps-section {
+    max-width: 780px;
+    margin: 0 auto 80px;
+    padding: 0 24px;
+    text-align: center;
+  }
+  .steps-title {
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    margin-bottom: 14px;
+  }
+  .steps-sub {
+    font-size: 15px;
+    color: #6b5f7a;
+    margin-bottom: 36px;
+  }
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+  }
+  .step-card {
+    background: #1a1628;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 20px;
+    padding: 28px 28px 26px;
+  }
+  .step-badge {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+    color: #fff;
+  }
+  .s1 { background: linear-gradient(135deg, #f97316, #ec4899); }
+  .s2 { background: linear-gradient(135deg, #ec4899, #a855f7); }
+  .s3 { background: linear-gradient(135deg, #a855f7, #7c3aed); }
+  .step-title { font-size: 18px; font-weight: 800; margin-bottom: 8px; color: #fff; }
+  .step-desc { font-size: 14px; color: #6b5f7a; line-height: 1.6; }
+</style>
+
+<!-- REDEEM SECTION -->
+<section class="redeem-section">
+  <h2 class="redeem-title">Redeem your rewards <span class="gradient-text">your way</span></h2>
+  <div class="redeem-grid">
+    <div class="redeem-card">
+      <svg class="r-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="5" width="20" height="14" rx="3"/>
+        <path d="M2 10h20"/>
+        <circle cx="7" cy="15" r="1.5" fill="currentColor" stroke="none"/>
+      </svg>
+      <div class="r-name">PayPal</div>
+      <div class="r-sub">Direct redemption</div>
+    </div>
+    <div class="redeem-card">
+      <svg class="r-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/>
+      </svg>
+      <div class="r-name">Bank Transfer</div>
+      <div class="r-sub">Direct deposit</div>
+    </div>
+    <div class="redeem-card">
+      <svg class="r-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="6" width="20" height="13" rx="2"/>
+        <path d="M2 10h20"/>
+      </svg>
+      <div class="r-name">Visa Prepaid</div>
+      <div class="r-sub">Use anywhere</div>
+    </div>
+    <div class="redeem-card">
+      <svg class="r-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="8" width="18" height="13" rx="2"/>
+        <path d="M12 8V5m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1 4 0"/>
+        <path d="M12 13v4"/>
+        <path d="M3 13h18"/>
+      </svg>
+      <div class="r-name">200+ Gift Cards</div>
+      <div class="r-sub">Amazon, Apple, Target...</div>
+    </div>
+  </div>
+  <p class="redeem-note">Pick your reward — <span class="gradient-text-bold">redeem on demand</span></p>
+</section>
+
+<style>
+  .redeem-section {
+    max-width: 900px;
+    margin: 0 auto 80px;
+    padding: 0 24px;
+    text-align: center;
+  }
+  .redeem-title {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 900;
+    margin-bottom: 36px;
+    letter-spacing: -0.5px;
+  }
+  .gradient-text {
+    background: linear-gradient(90deg, #f97316 0%, #ec4899 50%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .gradient-text-bold {
+    background: linear-gradient(90deg, #f97316, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+  }
+  .redeem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .redeem-card {
+    background: #1a1628;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 20px;
+    padding: 36px 24px 32px;
+    text-align: center;
+  }
+  .r-icon {
+    width: 38px; height: 38px;
+    color: #f97316;
+    margin: 0 auto 16px;
+    display: block;
+  }
+  .r-name {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #fff;
+  }
+  .r-sub {
+    font-size: 14px;
+    color: #6b5f7a;
+  }
+  .redeem-note {
+    font-size: 15px;
+    color: #6b5f7a;
+  }
+</style>
+
+<!-- BEST WAYS TO EARN -->
+<section class="ways-section">
+  <h2 class="ways-title">Best ways to <span class="gradient-text">earn</span></h2>
+  <div class="ways">
+    <div class="way-card">
+      <svg class="way-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="6" width="20" height="12" rx="2"/>
+        <circle cx="12" cy="12" r="2"/>
+        <path d="M6 12h.01M18 12h.01"/>
+        <path d="M9 6V4m6 2V4"/>
+      </svg>
+      <div class="way-title">Play games</div>
+      <div class="way-desc">Gaming companies pay you to try their games. Reach in-game milestones and earn.</div>
+    </div>
+    <div class="way-card">
+      <svg class="way-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="7" y="2" width="10" height="20" rx="2"/>
+        <circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/>
+      </svg>
+      <div class="way-title">Try apps</div>
+      <div class="way-desc">Discover new apps. Get paid to download and try them out.</div>
+    </div>
+    <div class="way-card">
+      <svg class="way-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="3" width="16" height="18" rx="2"/>
+        <path d="M8 7h8M8 11h8M8 15h5"/>
+        <path d="M4 7h1M4 11h1M4 15h1"/>
+      </svg>
+      <div class="way-title">Take surveys</div>
+      <div class="way-desc">Share your opinion. Companies pay for feedback to build better products.</div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ways-section {
+    max-width: 780px;
+    margin: 0 auto 80px;
+    padding: 0 24px;
+    text-align: center;
+  }
+  .ways-title {
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    margin-bottom: 30px;
+  }
+  .ways { display: flex; flex-direction: column; gap: 12px; text-align: left; }
+  .way-card {
+    background: #1a1628;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 20px;
+    padding: 28px 28px 26px;
+  }
+  .way-icon {
+    width: 32px; height: 32px;
+    color: #f97316;
+    margin-bottom: 14px;
+    display: block;
+  }
+  .way-title { font-size: 18px; font-weight: 800; margin-bottom: 8px; color: #fff; }
+  .way-desc { font-size: 14px; color: #6b5f7a; line-height: 1.6; }
+</style>
+
+
+<!-- URGENCY CTA -->
+<section class="urgency-wrap">
+  <div class="urgency-box">
+    <div class="urgency-tag">⚡ LIMITED · STARTS TODAY</div>
+    <h2 class="urgency-title">Pick any offer.<br>Get paid within 24 hours.</h2>
+    <p class="urgency-sub">Join <strong id="urgency-count">4,396</strong> people earning right now.</p>
+    <a href="https://start.nextrwrd.com/cf/click/1?lptoken=17da80e89460147e11f4" class="cta-btn">Unlock the app — earn →</a>
+    <p class="urgency-note">Instant access · No card required</p>
+  </div>
+</section>
+
+<style>
+  .urgency-wrap {
+    max-width: 900px;
+    margin: 0 auto 80px;
+    padding: 0 24px;
+  }
+  .urgency-box {
+    background: #1a1628;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 24px;
+    padding: 52px 40px 44px;
+    text-align: center;
+  }
+  .urgency-tag {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #f97316;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .urgency-title {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 14px;
+  }
+  .urgency-sub {
+    font-size: 16px;
+    color: #6b5f7a;
+    margin-bottom: 28px;
+  }
+  .urgency-sub strong { color: #fff; font-weight: 700; }
+  .urgency-note {
+    font-size: 13px;
+    color: #4a3f5a;
+    margin-top: 14px;
+  }
+</style>
+
+
+<!-- TESTIMONIALS -->
+<section class="testi-section">
+  <h2 class="testi-title">Everyone's <span class="gradient-text">talking</span> about us</h2>
+  <div class="tp-center">
+    <div class="tp-pill">
+      <span class="tp-excellent">Excellent</span>
+      <div class="tp-stars-wrap">
+        <span class="tp-star">★</span>
+        <span class="tp-star">★</span>
+        <span class="tp-star">★</span>
+        <span class="tp-star">★</span>
+        <span class="tp-star">★</span>
+      </div>
+      <span class="tp-count">274,977 reviews on</span>
+      <span class="tp-brand">★ Trustpilot</span>
+    </div>
+  </div>
+  <div class="reviews-track-wrap">
+    <div class="reviews-track" id="reviews-track">
+      <div class="review-card">
+        <div class="r-stars">★★★★★</div>
+        <p class="r-text">"Love this! I do offers while watching Netflix and it just adds up. Got an Amazon gift card last night within minutes of redeeming. So smooth."</p>
+        <div class="r-author"><strong>Priya S.</strong> · Verified review</div>
+      </div>
+      <div class="review-card">
+        <div class="r-stars">★★★★★</div>
+        <p class="r-text">"Finally something that actually pays out. I've tried so many of these apps and most are scams — this one is the real deal. Venmo cashout was instant."</p>
+        <div class="r-author"><strong>Jessica M.</strong> · Verified review</div>
+      </div>
+      <div class="review-card">
+        <div class="r-stars">★★★★★</div>
+        <p class="r-text">"Honestly addicted now. The game offers are the best part — I'd be playing them anyway and getting paid for it feels like cheating."</p>
+        <div class="r-author"><strong>Sophia L.</strong> · Verified review</div>
+      </div>
+      <div class="review-card">
+        <div class="r-stars">★★★★★</div>
+        <p class="r-text">"Amazing platform to earn cash! By far the best site I've ever used. Easy to use, wide variety of tasks and payouts are super fast. Totally legit."</p>
+        <div class="r-author"><strong>Darakhshan J.</strong> · Verified review</div>
+      </div>
+      <div class="review-card">
+        <div class="r-stars">★★★★★</div>
+        <p class="r-text">"I was skeptical at first but cashed out $142 to PayPal in my first week. I only invested $74. Honestly the easiest money I've made on my phone. Already told my sister."</p>
+        <div class="r-author"><strong>Ashley R.</strong> · Verified review</div>
+      </div>
+      <div class="review-card">
+        <div class="r-stars">★★★★★</div>
+        <p class="r-text">"Way better than the other rewards apps I've used. Offers actually credit when they say they will, and support replied within an hour when I had a question."</p>
+        <div class="r-author"><strong>Madison W.</strong> · Verified review</div>
+      </div>
+      <div class="review-card">
+        <div class="r-stars">★★★★★</div>
+        <p class="r-text">"I put in $35 and made $80 in my first weekend just doing surveys and trying a couple apps. The payout options are great — I went with the Target gift card."</p>
+        <div class="r-author"><strong>Olivia B.</strong> · Verified review</div>
+      </div>
+      <div class="review-card">
+        <div class="r-stars">★★★★★</div>
+        <p class="r-text">"I'm a stay-at-home mom and this gives me a little extra spending money every week. Super easy to use, no shady stuff. 10/10 recommend."</p>
+        <div class="r-author"><strong>Emma K.</strong> · Verified review</div>
+      </div>
+      <!-- Duplicates for infinite scroll -->
+      <div class="review-card">
+        <div class="r-stars">★★★★★</div>
+        <p class="r-text">"Love this! I do offers while watching Netflix and it just adds up. Got an Amazon gift card last night within minutes of redeeming. So smooth."</p>
+        <div class="r-author"><strong>Priya S.</strong> · Verified review</div>
+      </div>
+      <div class="review-card">
+        <div class="r-stars">★★★★★</div>
+        <p class="r-text">"Finally something that actually pays out. I've tried so many of these apps and most are scams — this one is the real deal. Venmo cashout was instant."</p>
+        <div class="r-author"><strong>Jessica M.</strong> · Verified review</div>
+      </div>
+      <div class="review-card">
+        <div class="r-stars">★★★★★</div>
+        <p class="r-text">"Honestly addicted now. The game offers are the best part — I'd be playing them anyway and getting paid for it feels like cheating."</p>
+        <div class="r-author"><strong>Sophia L.</strong> · Verified review</div>
+      </div>
+      <div class="review-card">
+        <div class="r-stars">★★★★★</div>
+        <p class="r-text">"Amazing platform to earn cash! By far the best site I've ever used. Easy to use, wide variety of tasks and payouts are super fast. Totally legit."</p>
+        <div class="r-author"><strong>Darakhshan J.</strong> · Verified review</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-section">
+  <h2 class="final-title">Ready to <span class="gradient-text">start earning?</span></h2>
+  <p class="final-sub">Join a community of users earning online — start in 20 seconds.</p>
+  <a href="https://start.nextrwrd.com/cf/click/1?lptoken=17da80e89460147e11f4" class="cta-btn">Create free account →</a>
+</section>
+
+<p class="disclaimer">18+ only. Rewards &amp; payouts subject to T&amp;Cs. Not affiliated with Apple, Google or any advertised brand.</p>
+
+<style>
+  .testi-section {
+    max-width: 100%;
+    margin: 0 auto 70px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .testi-title {
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+    padding: 0 24px;
+  }
+  .tp-center { display: flex; justify-content: center; margin-bottom: 28px; }
+  .reviews-track-wrap {
+    position: relative;
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+  }
+  .reviews-track {
+    display: flex;
+    gap: 16px;
+    width: max-content;
+    animation: scroll-reviews 40s linear infinite;
+    padding: 8px 0;
+  }
+  .reviews-track:hover { animation-play-state: paused; }
+  @keyframes scroll-reviews {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .review-card {
+    background: #1a1628;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 22px 22px 18px;
+    width: 300px;
+    flex-shrink: 0;
+    text-align: left;
+  }
+  .r-stars { color: #f97316; font-size: 14px; margin-bottom: 10px; }
+  .r-text { font-size: 13px; color: #a090b8; line-height: 1.65; margin-bottom: 12px; }
+  .r-author { font-size: 12px; color: #4a3f5a; }
+  .r-author strong { color: #fff; }
+
+  .final-section {
+    max-width: 780px;
+    margin: 0 auto 20px;
+    padding: 0 24px;
+    text-align: center;
+  }
+  .final-title {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 900;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+  }
+  .final-sub { font-size: 15px; color: #6b5f7a; margin-bottom: 24px; }
+  .disclaimer {
+    font-size: 12px;
+    color: #3a3048;
+    text-align: center;
+    padding: 0 24px 40px;
+    line-height: 1.6;
+  }
+</style>
+
+<script>
+  const liveEl = document.getElementById('live-count');
+  const urgencyEl = document.getElementById('urgency-count');
+  let count = 4396;
+  setInterval(() => {
+    const delta = Math.floor(Math.random() * 5) - 2;
+    count = Math.max(3800, Math.min(4600, count + delta));
+    liveEl.textContent = count.toLocaleString() + ' NOW';
+    urgencyEl.textContent = count.toLocaleString();
+  }, 4000);
+</script>
+</body>
+</html>
